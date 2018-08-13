@@ -32,9 +32,10 @@ class SignUpForm extends Component {
 
 
     onSubmit = (event) => {
+        event.preventDefault();
         const { email, passwordOne } = this.state;
 
-        auth.doCreateUserWithEmailAndPassword(email, passwordOne)
+        auth.createUserWithEmailAndPassword(email, passwordOne)
         .then(authUser => {
           this.setState({ ...INITIAL_STATE });
         //   history.push(routes.HOME);
@@ -43,7 +44,7 @@ class SignUpForm extends Component {
           this.setState(byPropKey('error', error));
         });
   
-      event.preventDefault();
+    
     }
 
     render() {
