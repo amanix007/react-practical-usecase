@@ -10,11 +10,6 @@ class Home extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-md-12">
-                                {/* <div className="text text-center">
-                                    <h1>Aman Ullah</h1>
-                                    <p></p>
-                                </div> */}
-
                                 <div className="jumbotron text-center">
                                     <h1>Aman Ullah</h1>
                                     <p className="lead">A Potato who thriving to be a mango.</p>
