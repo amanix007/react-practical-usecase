@@ -1,8 +1,27 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import logo from '../assets/img/icon.png';
+import Navigation from './Navigation';
+import { firebase } from '../firebase/';
 class BaseLayout extends Component {
+
+    constructor(props) {
+        super(props);
+    
+        this.state = {
+          authUser: null,
+        };
+      }
+
+    componentDidMount() {
+
+        firebase.auth.onAuthStateChanged(authUser => {
+          authUser ? this.setState({authUser}) : this.setState({authUser: null})
+        });
+      }
+    
+
     render() {
+        
         return (
 
             <React.Fragment>
@@ -13,31 +32,21 @@ class BaseLayout extends Component {
                             <span className="navbar-toggler-icon" />
                         </button>
                         <div className="collapse navbar-collapse" id="navbarCollapse">
-                            <ul className="navbar-nav ml-auto">
-                                <li className="nav-item active">
-                                    <Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/signin">Sign In</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/signup">Sign Up</Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/account">Account</Link>
-                                </li>
-                            </ul>
-
+                            <Navigation authUser={this.state.authUser}/>
                         </div>
                     </div>
                 </nav>
+                <main className="main">
                 {this.props.children}
+                </main>
                 <footer>
+                    <div className="container">
                     <ul>
                         <li><a>item</a></li>
                         <li><a>item</a></li>
                         <li><a>item</a></li>
                     </ul>
+                    </div>
                 </footer>
             </React.Fragment>
         )

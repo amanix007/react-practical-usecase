@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import { Provider } from "react-redux";
-import { Switch, Route, BrowserRouter as Router } from "react-router-dom";
+import { Switch, Route} from "react-router-dom";
 import { ConnectedRouter } from 'react-router-redux';
 import { history, store } from './store';
 
@@ -21,22 +21,20 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router>
+        <ConnectedRouter history={history}>
           <BaseLayout>
-            <ConnectedRouter history={history}>
-              <AutoScroll>
-                <Switch>
-                  <Route exact path='/' component={Landing} />
-                  <Route exact path='/signup' component={SignUp}/>
-                  <Route exact path='/signin' component={SignIn}/>
-                  <Route exact path='/password-forget' component={PasswordForget}/>
-                  <Route exact path='/home' component={Home}/>
-                  <Route exact path='/account' component={Account}/>
-                </Switch>
-              </AutoScroll>
-            </ConnectedRouter>
+            <AutoScroll>
+              <Switch>
+                <Route exact path='/landing' component={Landing} />
+                <Route path='/signup' component={SignUp} />
+                <Route path='/signin' component={SignIn} />
+                <Route path='/password-forget' component={PasswordForget} />
+                <Route path='/home' component={Home} />
+                <Route path='/account' component={Account} />
+              </Switch>
+            </AutoScroll>
           </BaseLayout>
-        </Router>
+        </ConnectedRouter>
       </Provider>
     );
   }

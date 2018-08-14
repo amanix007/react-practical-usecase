@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import {
+    Link,
+    withRouter,
+  } from 'react-router-dom';
 import { auth } from '../../firebase/firebase';
 
-const SignUp = () =>
-    <div>
+const SignUp = ({history}) =>
+    <div className="container">
         <h1>SignUp</h1>
-        <SignUpForm />
+        <SignUpForm  history={history} />
     </div>
 
 const INITIAL_STATE = {
@@ -27,24 +30,38 @@ class SignUpForm extends Component {
 
 
         this.state = { ...INITIAL_STATE };
+        console.log(this.props);
 
     }
-
 
     onSubmit = (event) => {
         event.preventDefault();
         const { email, passwordOne } = this.state;
+        const {
+            history,
+          } = this.props;
+          this.signUp(email, passwordOne);
+    }
 
-        auth.createUserWithEmailAndPassword(email, passwordOne)
-        .then(authUser => {
-          this.setState({ ...INITIAL_STATE });
-        //   history.push(routes.HOME);
-        })
-        .catch(error => {
-          this.setState(byPropKey('error', error));
-        });
-  
-    
+    signUp = async (email,passwordOne) => {
+        // auth.createUserWithEmailAndPassword(email, passwordOne)
+        // .then(authUser => {
+        //   this.setState({ ...INITIAL_STATE });
+        //   history.push('/home');
+        // })
+        // .catch(error => {
+        //   this.setState(byPropKey('error', error));
+        // });
+
+        try{
+            let res = await auth.createUserWithEmailAndPassword(email,passwordOne);
+            if(res)
+                this.setState({...INITIAL_STATE});
+            this.props.history.push('/home');
+
+        }catch(err){
+                this.setState(byPropKey("error",err));
+        }
     }
 
     render() {
@@ -95,7 +112,7 @@ const SignUpLink = () =>
         <Link to='/signup'>Sign Up</Link>
     </p>
 
-export default SignUp;
+export default withRouter(SignUp);
 
 export {
     SignUpForm,

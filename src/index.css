@@ -21,7 +21,6 @@ body {
   background-attachment: fixed;
   color: #222222;
   min-height: 100vh;
-  width: 100vw;
   display: flex;
   align-items: center; }
   .header h1 {
