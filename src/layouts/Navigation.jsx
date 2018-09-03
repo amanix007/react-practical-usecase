@@ -13,7 +13,7 @@ const Navigation = ({ authUser }) =>
 
 const NavigationAuth = () =>
   <ul className="navbar-nav ml-auto">
-    <li><Link className="nav-link" to={'/landing'}>Landing</Link></li>
+    <li><Link className="nav-link" to={'/'}>Landing</Link></li>
     <li><Link className="nav-link" to={'/home'}>Home</Link></li>
     <li><Link className="nav-link" to={'/account'}>Account</Link></li>
     <li><SignOutButton /></li>
@@ -21,7 +21,7 @@ const NavigationAuth = () =>
 
 const NavigationNonAuth = () =>
   <ul className="navbar-nav ml-auto">
-    <li><Link className="nav-link" to={'/landing'}>Landing</Link></li>
+    <li><Link className="nav-link" to={'/'}>Landing</Link></li>
     <li><Link className="nav-link" to={'/signin'}>Sign In</Link></li>
   </ul>
 

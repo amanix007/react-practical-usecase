@@ -25,7 +25,7 @@ class App extends Component {
           <BaseLayout>
             <AutoScroll>
               <Switch>
-                <Route exact path='/landing' component={Landing} />
+                <Route exact path='/' component={Landing} />
                 <Route path='/signup' component={SignUp} />
                 <Route path='/signin' component={SignIn} />
                 <Route path='/password-forget' component={PasswordForget} />
